@@ -1,0 +1,35 @@
+html {
+    box-sizing: border-box;
+}
+  *, *:before, *:after {
+    box-sizing: inherit;
+}
+.calculator {
+    border: 4px solid blue;
+    display: flex;
+    flex-wrap: wrap;
+    width: 25em;
+    align-content: flex-start;
+}
+.display {
+    font-size: 52px;
+    width: 100%;
+    height: 80px;
+    text-align: right;
+    padding: 8px 8px 8px 8px;
+    margin-bottom: 12px;
+}
+.input {
+    padding: 4px 4px 4px 4px;
+    border: 2px solid rgb(29, 230, 112);
+}
+.button {
+    border: 1px solid silver;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 0 auto;
+    width: 5em;
+    height: 5em;
+    margin: 4px 4px 4px 4px;
+}
