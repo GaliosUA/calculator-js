@@ -1,15 +1,23 @@
 html {
     box-sizing: border-box;
+
 }
   *, *:before, *:after {
     box-sizing: inherit;
+    user-select: none;
 }
 .calculator {
-    border: 4px solid blue;
+    position: relative;
+    left: 40vw;
+    top: 5vw;
+    border: 8px double rgb(49, 49, 99);
+    border-radius: 8px;
     display: flex;
     flex-wrap: wrap;
     width: 25em;
     align-content: flex-start;
+    gap: 6px;
+    padding: 0px 6px 6px 6px;
 }
 .display {
     font-size: 52px;
@@ -21,15 +29,21 @@ html {
 }
 .input {
     padding: 4px 4px 4px 4px;
-    border: 2px solid rgb(29, 230, 112);
+    border: 2px solid rgb(29, 156, 230);
+    border-radius: 6px;
+    height: 80px;
 }
 .button {
-    border: 1px solid silver;
+    border: 1px solid rgb(135, 104, 170);
+    border-radius: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex: 1 0 auto;
     width: 5em;
     height: 5em;
-    margin: 4px 4px 4px 4px;
+}
+.pressed {
+    transition: .07s;
+    transform: scale(1.1);
 }
