@@ -1,60 +1,60 @@
 const buttons = document.querySelectorAll('.button');
 const inputField = document.querySelector('.input');
-let a = null;
-let b = null;
+const answerField = document.querySelector('.answer');
+let a = '';
+let b = '';
 let operator = '';
 
 buttons.forEach(button => button.addEventListener('click', pressed));
 buttons.forEach(button => button.addEventListener('transitionend', released));
 
-
 function pressed() {
     this.classList.add('pressed');
-    if (this.textContent != '=') inputField.textContent += this.textContent;
-    if (this.textContent == 'C') {
-        clearVariables();
-        inputField.textContent = '';
-        return 0;
-    }
-    if (inputField.textContent.length >= 10) inputField.textContent = inputField.textContent.slice(0, 10);
-    if (a == null && this.classList.contains('operator')) {
+    if (this.textContent == 'C') clearAll();
+    if (this.textContent == '√') answerField.textContent = Math.sqrt(a);
+    if (this.classList.contains('operator') && operator == '') {
         operator = this.textContent;
+        inputField.textContent += operator;
         console.log('operator is ' + operator);
-        a = inputField.textContent.slice(0, -1);
+    };
+    inputField.textContent = inputField.textContent.slice(0, 30);
+    if (this.classList.contains('number') && operator == '') {
+        inputField.textContent += this.textContent;
+        a += this.textContent;
         console.log('a is ' + a);
-    } else if (a != null && this.classList.contains('operator')) {
-        b = inputField.textContent.slice(a.length + 1, -1);
+    } else if (this.classList.contains('number') && operator != '') {
+        inputField.textContent += this.textContent;
+        b += this.textContent;
         console.log('b is ' + b);
-        operate(a, b, operator);
-        clearVariables();
     };
-    if (this.textContent == '=' && a == null) {
-        return 0;
-    }
-    else if (this.textContent == '=' && b != null) {
+    if (this.classList.contains('operator') && b != '') {
         operate(a, b, operator);
-        a = inputField.textContent;
-    } else if (this.textContent == '=' && b == null) {
-        b = inputField.textContent.slice(a.length + 1);
-        console.log('b is equals' + b);
-        operate(a, b, operator);
-        a = inputField.textContent;
+        a = answerField.textContent;
+        b = '';
+        operator = '';
     };
-
+    if (this.classList.contains('equals') && b != '') {
+        operate(a, b, operator);
+        a = answerField.textContent;
+        b = '';
+        operator = '';
+    };
 };
 
 function released() {
     this.classList.remove('pressed');
 };
-
-function operate(first, second, operator) {
-    if (operator == '+') inputField.textContent = +first + +second;
-    if (operator == '-') inputField.textContent = +first - +second;
-    if (operator == '*') inputField.textContent = +first * +second;
-    if (operator == '/') inputField.textContent = +first / +second;
+function clearAll() {
+    a = '';
+    b = '';
+    operator = '';
+    inputField.textContent = '';
+    answerField.textContent = '';
 };
-
-function clearVariables() {
-    a = null;
-    b = null;
+function operate(first, second, operator) {
+    if (operator == '+') answerField.textContent = +first + +second;
+    if (operator == '-') answerField.textContent = +first - +second;
+    if (operator == '*') answerField.textContent = +first * +second;
+    if (operator == '/') answerField.textContent = +first / +second;
+    if (operator == '%') answerField.textContent = (+first / 100) * +second;
 };
