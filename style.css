@@ -12,9 +12,9 @@ body {
     background-image: url(./bg.jpg);
 }
 .calculator {
+    margin: 0 auto;
     position: relative;
-    left: 40vw;
-    top: 5vw;
+    top: 5%;
     border: 12px double rgb(49, 49, 99);
     border-radius: 8px;
     display: flex;

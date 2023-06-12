@@ -1,6 +1,7 @@
 const buttons = document.querySelectorAll('.button');
 const inputField = document.querySelector('.input');
 const answerField = document.querySelector('.answer');
+const dotButton = document.querySelector('.dot');
 let a = '';
 let b = '';
 let operator = '';
@@ -21,10 +22,14 @@ function pressed() {
     if (this.classList.contains('number') && operator == '') {
         inputField.textContent += this.textContent;
         a += this.textContent;
+        dotButton.addEventListener('click', pressed);
+        if (a.includes('.')) dotButton.removeEventListener('click', pressed);
         console.log('a is ' + a);
     } else if (this.classList.contains('number') && operator != '') {
         inputField.textContent += this.textContent;
         b += this.textContent;
+        dotButton.addEventListener('click', pressed);
+        if (b.includes('.')) dotButton.removeEventListener('click', pressed);
         console.log('b is ' + b);
     };
     if (this.classList.contains('operator') && b != '') {
