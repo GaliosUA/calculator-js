@@ -16,28 +16,28 @@ function pressed() {
     if (this.classList.contains('operator') && operator == '') {
         operator = this.textContent;
         inputField.textContent += operator;
-        console.log('operator is ' + operator);
     };
+
     inputField.textContent = inputField.textContent.slice(0, 30);
     if (this.classList.contains('number') && operator == '') {
         inputField.textContent += this.textContent;
         a += this.textContent;
         dotButton.addEventListener('click', pressed);
         if (a.includes('.')) dotButton.removeEventListener('click', pressed);
-        console.log('a is ' + a);
     } else if (this.classList.contains('number') && operator != '') {
         inputField.textContent += this.textContent;
         b += this.textContent;
         dotButton.addEventListener('click', pressed);
         if (b.includes('.')) dotButton.removeEventListener('click', pressed);
-        console.log('b is ' + b);
     };
+
     if (this.classList.contains('operator') && b != '') {
         operate(a, b, operator);
         a = answerField.textContent;
         b = '';
         operator = '';
     };
+    
     if (this.classList.contains('equals') && b != '') {
         operate(a, b, operator);
         a = answerField.textContent;
@@ -49,6 +49,7 @@ function pressed() {
 function released() {
     this.classList.remove('pressed');
 };
+
 function clearAll() {
     a = '';
     b = '';
@@ -56,6 +57,7 @@ function clearAll() {
     inputField.textContent = '';
     answerField.textContent = '';
 };
+
 function operate(first, second, operator) {
     if (operator == '+') answerField.textContent = +first + +second;
     if (operator == '-') answerField.textContent = +first - +second;
